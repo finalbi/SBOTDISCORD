@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) throws LoginException {
 
         System.out.println("Starting...");
-        jda = JDABuilder.createLight(System.getenv("TOKEN"),  GUILD_MESSAGES, GUILD_VOICE_STATES).setActivity(Activity.playing("Selkirk Student Simulator")).addEventListeners(new EvalCommands(), new GameCommands(), new DMMANGER(), new DevCommands()).build();
+        jda = JDABuilder.createLight("MTAyMTYyMTgxODczOTY1NDY5Ng.Gl-w_g.OkYVzB4LM3oyXhRts-u4G5w9STZeUR-aui2lzA",  GUILD_MESSAGES, GUILD_VOICE_STATES).setActivity(Activity.playing("Selkirk Student Simulator")).addEventListeners(new EvalCommands(), new GameCommands(), new DMMANGER(), new DevCommands()).build();
         System.out.println("Online");
         jda.upsertCommand("ping", "Calculates the ping of the bot").queue();
         jda.upsertCommand("rps", "Rock Paper Scissors").queue();
