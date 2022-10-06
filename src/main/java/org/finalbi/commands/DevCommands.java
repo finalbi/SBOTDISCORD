@@ -8,8 +8,16 @@ public class DevCommands extends ListenerAdapter {
 
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
-        if (event.getName().equals("shutdown") && event.getMember().getRoles().contains(event.getGuild().getRoleById("1026608117779288074"))){
-            System.exit(0);
+        if (event.getName().equals("shutdown")){
+            if (event.getMember().getRoles().contains(event.getGuild().getRoleById("1026608117779288074"))){
+                if (!event.getOptions().isEmpty()) {
+                    System.exit((int)event.getOption("status").getAsDouble());
+                }else {
+                    System.exit(0);
+                }
+            }else {
+                event.reply(event.getUser().getName() + " You do not have the correct permissions to perform this action").setEphemeral(true).queue();
+            }
         }
     }
 }
