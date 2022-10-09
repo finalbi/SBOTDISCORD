@@ -29,7 +29,7 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(manger::save));
 
         System.out.println("Starting...");
-        jda = JDABuilder.createLight("MTAyMTYyMTgxODczOTY1NDY5Ng.Gl-w_g.OkYVzB4LM3oyXhRts-u4G5w9STZeUR-aui2lzA",  GUILD_MESSAGES, GUILD_VOICE_STATES).setActivity(Activity.playing("Selkirk Student Simulator")).addEventListeners(new EvalCommands(), new GameCommands(), new DMMANGER(), new DevCommands(), manger).build();
+        jda = JDABuilder.createLight("MTAyMTYyMTgxODczOTY1NDY5Ng.Gl-w_g.OkYVzB4LM3oyXhRts-u4G5w9STZeUR-aui2lzA",  GUILD_MESSAGES, GUILD_VOICE_STATES).setActivity(Activity.playing("Selkirk Student Simulator")).addEventListeners(new EvalCommands(), new GameCommands(), new DMMANGER(), new DevCommands(), new MiscCommands(), manger).build();
         System.out.println("Online");
         jda.upsertCommand("ping", "Calculates the ping of the bot").queue();
         jda.upsertCommand("rps", "Rock Paper Scissors").queue();
@@ -37,6 +37,7 @@ public class Main {
         jda.upsertCommand("save", "saves the xp data").queue();
         jda.upsertCommand("xpmultiplier", "sets the xp Multiplier").addOption(OptionType.NUMBER, "value", "the value to set it to").queue();
         jda.upsertCommand("getlevel", "gets your xp and level").queue();
+        jda.upsertCommand("base64", "encodes or decode text from base64").addOption(OptionType.BOOLEAN, "encode", "if this is true it encode if it is false it decodes").addOption(OptionType.BOOLEAN, "url", "is this a url or not", false).addOption(OptionType.STRING, "text", "the text to encode or decode").queue();
         System.out.println("Registered Commands");
     }
 

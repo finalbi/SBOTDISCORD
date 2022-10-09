@@ -8,10 +8,13 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.finalbi.Main;
+import org.finalbi.util.Base64Encoder;
 import org.jetbrains.annotations.NotNull;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.Buffer;
 import java.util.HashMap;
@@ -140,6 +143,7 @@ public class XPManger extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+        if (event.getAuthor().isBot()) return;
         add(event.getAuthor(), xpGainMultiplier);
         if (levels.get(event.getAuthor()).levelUpNeedsToBeProcessed){
             EmbedBuilder builder = new EmbedBuilder();
@@ -159,14 +163,11 @@ public class XPManger extends ListenerAdapter {
             if (levels.containsValue(event.getUser())) {
                 addNew(event.getUser());
             }
-            JProgressBar progressBar = new JProgressBar(0, levels.get(event.getUser()).amountRequiredForLevel);
-            progressBar.setValue(levels.get(event.getUser()).xp);
-            Image image = progressBar.createImage(100, 100);
             EmbedBuilder builder = new EmbedBuilder();
             builder.setColor(Color.YELLOW);
             builder.addField("xp", "xp: " + levels.get(event.getUser()).xp, false);
             builder.addField("level", "levels: " + levels.get(event.getUser()).level, false);
-            builder.
+            builder.setThumbnail(event.getUser().getAvatarUrl());
             event.replyEmbeds(builder.build()).queue();
         }
     }
