@@ -24,7 +24,6 @@ public class Main {
     public static void main(String[] args) throws LoginException, IOException {
 
         manger = new XPManger();
-        manger.load();
 
         Runtime.getRuntime().addShutdownHook(new Thread(manger::save));
 
@@ -36,9 +35,12 @@ public class Main {
         jda.upsertCommand("shutdown", "shuts the bot down").addOption(OptionType.NUMBER, "status", "the exit status of the bot", false).queue();
         jda.upsertCommand("save", "saves the xp data").queue();
         jda.upsertCommand("xpmultiplier", "sets the xp Multiplier").addOption(OptionType.NUMBER, "value", "the value to set it to").queue();
-        jda.upsertCommand("getlevel", "gets your xp and level").queue();
+        jda.upsertCommand("getlevel", "gets your xp and level").addOption(OptionType.USER, "user", "the user that you are viewing is optional", false).queue();
         jda.upsertCommand("base64", "encodes or decode text from base64").addOption(OptionType.BOOLEAN, "encode", "if this is true it encode if it is false it decodes").addOption(OptionType.BOOLEAN, "url", "is this a url or not", false).addOption(OptionType.STRING, "text", "the text to encode or decode").queue();
+        jda.upsertCommand("leaderboard", "views the xp leaderboard").queue();
         System.out.println("Registered Commands");
+        manger.load();
+        System.out.println("Loaded XP data");
     }
 
 

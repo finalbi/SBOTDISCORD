@@ -14,7 +14,7 @@ public class MiscCommands extends ListenerAdapter {
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getName().equals("base64")){
                 String text = event.getOption("text").getAsString();
-                if (event.getOption("url").getAsBoolean()) {
+                if (event.getOption("url") != null && event.getOption("url").getAsBoolean()) {
                     if (event.getOption("encode").getAsBoolean()) {
                         String encodeResults = Base64.getUrlEncoder().encodeToString(text.getBytes());
                         event.reply("Here is the encoded text: " + encodeResults).queue();

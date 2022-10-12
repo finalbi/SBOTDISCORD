@@ -1,21 +1,28 @@
 package org.finalbi.commands;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.Button;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameCommands extends ListenerAdapter {
 
+    private EmbedBuilder builder;
 
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getName().equals("rps")) {
-            event.reply("Pick Your Choice").addActionRow(
+            builder = new EmbedBuilder();
+            builder.setColor(Color.YELLOW);
+            builder.addField(" ", "Rock Paper or Scissors", false);
+            builder.setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/1200px-Rock-paper-scissors.svg.png");
+            event.replyEmbeds(builder.build()).addActionRow(
                     Button.secondary("rock", "Rock"),
                     Button.primary("paper", "Paper"),
                     Button.success("scissors", "Scissors")
@@ -45,20 +52,22 @@ public class GameCommands extends ListenerAdapter {
         Answers.add(2, "scissors");
         int answerValue = (int) (Math.random() * 3);
         String value = Answers.get(answerValue);
+        builder.setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/1200px-Rock-paper-scissors.svg.png");
         if (value.equals(playerAnswer)) {
-            event.reply("you picked " + playerAnswer + " i picked " + value + " it is a tie").queue();
+            builder.addField(" ","you picked " + playerAnswer + " i picked " + value + " it is a tie", false);
         } else if (value.equals("rock") && playerAnswer.equals("paper")) {
-            event.reply("you picked " + playerAnswer + " i picked " + value + " You Won").queue();
+            builder.addField(" ","you picked " + playerAnswer + " i picked " + value + " You Won", false);
         } else if (value.equals("paper") && playerAnswer.equals("scissors")) {
-            event.reply("you picked " + playerAnswer + " i picked " + value + " You Won").queue();
+            builder.addField(" ","you picked " + playerAnswer + " i picked " + value + " You Won", false);
         } else if (value.equals("scissors") && playerAnswer.equals("rock")) {
-            event.reply("you picked " + playerAnswer + " i picked " + value + " You Won").queue();
+            builder.addField(" ","you picked " + playerAnswer + " i picked " + value + " You Won", false);
         } else if (value.equals("rock") && playerAnswer.equals("scissors")) {
-            event.reply("you picked " + playerAnswer + " i picked " + value + " You Lost").queue();
+            builder.addField(" ","you picked " + playerAnswer + " i picked " + value + " You Lost", false);
         } else if (value.equals("scissors") && playerAnswer.equals("paper")) {
-            event.reply("you picked " + playerAnswer + " i picked " + value + " You Lost").queue();
+            builder.addField(" ","you picked " + playerAnswer + " i picked " + value + " You Lost", false);
         } else if (value.equals("paper") && playerAnswer.equals("rock")) {
-            event.reply("you picked " + playerAnswer + " i picked " + value + " You lost").queue();
+            builder.addField(" ", "you picked " + playerAnswer + " i picked " + value + " You lost", false);
         }
+        event.editMessageEmbeds(builder.build()).queue();
     }
 }
