@@ -172,9 +172,7 @@ public class XPManger extends ListenerAdapter {
     public void onSlashCommand(SlashCommandEvent event) {
         if (event.getName().equals("getlevel")){
             if (event.getOption("user") != null) {
-                if (levels.containsValue(event.getOption("user").getAsUser())) {
-                    addNew(event.getUser());
-                }
+                levels.putIfAbsent(event.getOption("user").getAsUser(), new Level(event.getOption("user").getAsUser()));
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.setColor(Color.YELLOW);
                 builder.addField("xp", "xp: " + levels.get(event.getOption("user").getAsUser()).xp, false);
@@ -182,14 +180,13 @@ public class XPManger extends ListenerAdapter {
                 builder.setThumbnail(event.getUser().getAvatarUrl());
                 event.replyEmbeds(builder.build()).queue();
             }else {
-                if (!levels.containsValue(event.getUser())) {
-                    addNew(event.getUser());
-                }
+                levels.putIfAbsent(event.getUser(), new Level(event.getUser()));
                 EmbedBuilder builder = new EmbedBuilder();
-                builder.setColor(Color.YELLOW);
+                builder.setColor(Color.YELLOW );
+                int persentage = (levels.get(event.getUser()).xp / levels.get(event.getUser()).amountRequiredForLevel) * 100;
                 builder.addField("    ", "xp: " + levels.get(event.getUser()).xp, false);
                 builder.addField("   ", "levels: " + levels.get(event.getUser()).level, false);
-                builder.addField("  ", "percentage: " + levels.get(event.getUser()).xp / levels.get(event.getUser()).amountRequiredForLevel * 100, false);
+                builder.addField("  ", "percentage: " + String.valueOf(persentage), false);
                 builder.setThumbnail(event.getUser().getAvatarUrl());
                 event.replyEmbeds(builder.build()).queue();
             }
