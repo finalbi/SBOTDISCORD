@@ -183,10 +183,10 @@ public class XPManger extends ListenerAdapter {
                 levels.putIfAbsent(event.getUser(), new Level(event.getUser()));
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.setColor(Color.YELLOW );
-                int persentage = (levels.get(event.getUser()).xp / levels.get(event.getUser()).amountRequiredForLevel) * 100;
+                int persentage = levels.get(event.getUser()).xp * 100 / levels.get(event.getUser()).amountRequiredForLevel;
                 builder.addField("    ", "xp: " + levels.get(event.getUser()).xp, false);
                 builder.addField("   ", "levels: " + levels.get(event.getUser()).level, false);
-                builder.addField("  ", "percentage: " + String.valueOf(persentage), false);
+                builder.addField("  ", "percentage: " + persentage + "%", false);
                 builder.setThumbnail(event.getUser().getAvatarUrl());
                 event.replyEmbeds(builder.build()).queue();
             }
