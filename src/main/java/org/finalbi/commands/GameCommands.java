@@ -1,6 +1,7 @@
 package org.finalbi.commands;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -10,10 +11,16 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GameCommands extends ListenerAdapter {
 
     private EmbedBuilder builder;
+    public List<User> QuedGames;
+
+    public GameCommands(){
+        QuedGames = new ArrayList<>();
+    }
 
     @Override
     public void onSlashCommand(SlashCommandEvent event) {
@@ -27,6 +34,10 @@ public class GameCommands extends ListenerAdapter {
                     Button.primary("paper", "Paper"),
                     Button.success("scissors", "Scissors")
             ).queue();
+        }else if (event.getName().equals("multiplayerrps")){
+
+        }else if (event.getName().equals("accept")){
+
         }
     }
 
@@ -69,5 +80,9 @@ public class GameCommands extends ListenerAdapter {
             builder.addField(" ", "you picked " + playerAnswer + " i picked " + value + " You lost", false);
         }
         event.editMessageEmbeds(builder.build()).queue();
+    }
+
+    public void multirps(SlashCommandEvent event){
+
     }
 }

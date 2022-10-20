@@ -5,7 +5,7 @@ plugins {
 
 mainClassName = 'org.finalbi.Main'
 version '1.0.0'
-def jdaVersion = '4.4.0_350'
+def jdaVersion = '5.0.0-alpha.21'
 
 repositories {
     mavenCentral()
@@ -19,7 +19,6 @@ test {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation("net.dv8tion:JDA:$jdaVersion")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
