@@ -2,10 +2,10 @@ package org.finalbi.commands;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.interactions.components.Button;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -23,7 +23,7 @@ public class GameCommands extends ListenerAdapter {
     }
 
     @Override
-    public void onSlashCommand(SlashCommandEvent event) {
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equals("rps")) {
             builder = new EmbedBuilder();
             builder.setColor(Color.YELLOW);
@@ -44,7 +44,7 @@ public class GameCommands extends ListenerAdapter {
 
 
     @Override
-    public void onButtonClick(ButtonClickEvent event) {
+    public void onButtonInteraction(ButtonInteractionEvent event) {
         if (event.getComponentId().equals("rock")) {
             RPS("rock", event);
         } else if (event.getComponentId().equals("paper")) {
@@ -55,7 +55,7 @@ public class GameCommands extends ListenerAdapter {
     }
 
 
-    public void RPS(String playerInput, ButtonClickEvent event) {
+    public void RPS(String playerInput, ButtonInteractionEvent event) {
         String playerAnswer = playerInput;
         List<String> Answers = new ArrayList<>();
         Answers.add(0, "rock");
@@ -82,7 +82,7 @@ public class GameCommands extends ListenerAdapter {
         event.editMessageEmbeds(builder.build()).queue();
     }
 
-    public void multirps(SlashCommandEvent event){
+    public void multirps(SlashCommandInteractionEvent event){
 
     }
 }

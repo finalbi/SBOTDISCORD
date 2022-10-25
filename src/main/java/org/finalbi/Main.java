@@ -8,7 +8,6 @@ import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.managers.AudioManager;
-import net.dv8tion.jda.internal.entities.UserById;
 import org.finalbi.commands.*;
 import org.jetbrains.annotations.NotNull;
 

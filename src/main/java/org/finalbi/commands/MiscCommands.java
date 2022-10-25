@@ -1,6 +1,6 @@
 package org.finalbi.commands;
 
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.finalbi.util.Base64Encoder;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +11,7 @@ public class MiscCommands extends ListenerAdapter {
 
 
     @Override
-    public void onSlashCommand(SlashCommandEvent event) {
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equals("base64")){
                 String text = event.getOption("text").getAsString();
                 if (event.getOption("url") != null && event.getOption("url").getAsBoolean()) {
