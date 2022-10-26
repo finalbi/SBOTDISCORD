@@ -10,16 +10,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GameCommands extends ListenerAdapter {
 
     private EmbedBuilder builder;
-    public List<User> QuedGames;
+    public Map<User, MRPSGame> QuedGames;
 
     public GameCommands(){
-        QuedGames = new ArrayList<>();
+        QuedGames = new HashMap<>();
     }
 
     @Override
@@ -83,6 +84,16 @@ public class GameCommands extends ListenerAdapter {
     }
 
     public void multirps(SlashCommandInteractionEvent event){
+        QuedGames.put(event.getUser(), new MRPSGame(event.getUser(), event.getOption("user").getAsUser(), event.getOption("awnser").getAsString()));
+    }
+
+    public void accept(SlashCommandInteractionEvent event){
+        MRPSGame game =  QuedGames.get(event.getOption("user"));
+        if (game != null){
+
+        }else {
+
+        }
 
     }
 }
