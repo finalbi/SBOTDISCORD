@@ -42,6 +42,7 @@ public class Main {
         jda.upsertCommand("leaderboard", "views the xp leaderboard").queue();
         jda.upsertCommand("accept", "accepts a rock paper scissors request").addOption(OptionType.USER, "user", "the user that sent you the request").addOptions(new OptionData(OptionType.STRING, "awnser", "rock paper or scissors").addChoice("Rock", "rock").addChoice("Paper", "paper").addChoice("Scissors", "scissors")).queue();
         jda.upsertCommand("multiplayerrps", "makes a game of multiplayer Rock Paper Scissors").addOption(OptionType.USER, "user", "the user you want to play with").addOptions(new OptionData(OptionType.STRING, "awnser", "rock paper or scissor").addChoice("Rock", "rock").addChoice("Paper", "paper").addChoice("Scissors", "scissors")).queue();
+        jda.upsertCommand("decline", "declines a rock paper scissors request").addOption(OptionType.USER, "user", "the user that requested the game").queue();
         System.out.println("Registered Commands");
         manger.load();
         System.out.println("Loaded XP data");
