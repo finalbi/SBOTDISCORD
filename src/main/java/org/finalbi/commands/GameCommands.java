@@ -143,4 +143,8 @@ public class GameCommands extends ListenerAdapter {
         }
         event.replyEmbeds(Mbuilder.build()).queue();
     }
+
+    public void XO(SlashCommandInteractionEvent event){
+
+    }
 }
