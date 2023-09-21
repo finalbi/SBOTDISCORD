@@ -36,7 +36,7 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(manger::save));
 
         System.out.println("Starting...");
-        jda = JDABuilder.createLight("MTAyMTYyMTgxODczOTY1NDY5Ng.Gl-w_g.OkYVzB4LM3oyXhRts-u4G5w9STZeUR-aui2lzA",  GUILD_MESSAGES, GUILD_VOICE_STATES).setActivity(Activity.playing("Selkirk Student Simulator")).addEventListeners(new EvalCommands(), new GameCommands(), new DMMANGER(), new DevCommands(), new MiscCommands(), manger).build();
+        jda = JDABuilder.createLight("THIS IS WHERE THE TOKEN WOULD GO BUT I REMOVED IT FOR OBIVIOUS RESONS",  GUILD_MESSAGES, GUILD_VOICE_STATES).addEventListeners(new EvalCommands(), new GameCommands(), new DMMANGER(), new DevCommands(), new MiscCommands(), manger).build();
         System.out.println("Online");
         jda.upsertCommand("ping", "Calculates the ping of the bot").queue();
         jda.upsertCommand("rps", "Rock Paper Scissors").queue();
